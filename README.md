@@ -32,3 +32,16 @@ Designed for large datasets that exceed Excel's row limit (≈1,048,576 rows).
 
    ```bash
    git clone https://github.com/SidSin0809/fast-csv-merge-windows.git
+   ```
+
+## How it works
+
+- The script enumerates all *.csv files in the current directory, sorted by name.
+- For the first file:
+  - Reads every line and writes it to merged.csv (including the header).
+- For each subsequent file:
+  - Skips the first line (header).
+  - Streams all remaining lines into merged.csv.
+- Streaming is done via .NET System.IO.StreamReader and System.IO.StreamWriter to avoid the overhead and memory usage of Get-Content, type, or more.
+
+
